@@ -1,0 +1,5 @@
+#!/bin/bash
+
+terraform init \
+    -backend-config="username=${TF_VAR_BACKEND_USERNAME}" \
+    -backend-config="password=${TF_VAR_BACKEND_TOKEN}" \

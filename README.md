@@ -1,7 +1,11 @@
 # My own infrastructure
 
-Terraform is run manually from personal computer. It might be improvement to run terraform plan and terraform apply in
-gitlab action.
+[![Terraform](https://github.com/kozaktomas/infra/actions/workflows/terraform.yml/badge.svg)](https://github.com/kozaktomas/infra/actions/workflows/terraform.yml)
+
+- `terraform plan` in pull requests
+- `terraform apply` in the `main` branch
+
+All changes are applied by Github actions. See workflows for more details.
 
 ## Expected environment variables:
 
@@ -23,3 +27,8 @@ terraform plan
 terraform apply
 terraform state pull
 ```
+
+## Additional info
+
+Secrets are not passed to pull request from forks. It means that Github actions from forks will be failing. But, it
+should be safe!

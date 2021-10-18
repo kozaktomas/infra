@@ -9,14 +9,12 @@ All changes are applied by Github actions. See workflows for more details.
 
 ## Expected environment variables:
 
-Variables could be provided by maintainer(s).
-
 - TF_VAR_BACKEND_USERNAME=johndoe
 - TF_VAR_BACKEND_TOKEN=API_TOKEN
 - TF_VAR_CLOUDFLARE_EMAIL=johndoe@gmail.com
 - TF_VAR_CLOUDFLARE_API_KEY=API_TOKEN
 
-## How to run terraform
+## How to run terraform locally
 
 ```bash
 ./init # terraform should be initialized

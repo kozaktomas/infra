@@ -7,7 +7,7 @@ resource "cloudflare_record" "lojzatv_cz_ip_v4" {
   name    = "lojzatv.cz"
   type    = "A"
   value   = "89.221.215.36"
-  proxied = true
+  proxied = false
 }
 
 resource "cloudflare_record" "lojzatv_cz_ip_v6" {
@@ -15,5 +15,5 @@ resource "cloudflare_record" "lojzatv_cz_ip_v6" {
   name    = "lojzatv.cz"
   type    = "AAAA"
   value   = "2a02:2b88:2:424::"
-  proxied = true
+  proxied = false
 }

@@ -22,9 +22,18 @@ resource "cloudflare_record" "sdhveselice_cz_www_v4" {
 
 resource "cloudflare_record" "sdhveselice_cz_mx_1" {
   zone_id  = cloudflare_zone.sdhveselice_cz.id
-  type     = "MX"
   name     = "sdhveselice.cz"
-  value    = "panda.bk.cz"
+  type     = "MX"
+  value    = "70c1c31657325d2a.mx1.emailprofi.seznam.cz"
+  priority = 20
   proxied  = false
+}
+
+resource "cloudflare_record" "sdhveselice_cz_mx_2" {
+  zone_id  = cloudflare_zone.sdhveselice_cz.id
+  name     = "sdhveselice.cz"
+  type     = "MX"
+  value    = "70c1c31657325d2a.mx2.emailprofi.seznam.cz"
   priority = 10
+  proxied  = false
 }

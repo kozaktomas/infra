@@ -10,6 +10,30 @@ resource "cloudflare_record" "kozak_in_ip_v4" {
   proxied = true
 }
 
+resource "cloudflare_record" "kozak_in_grafana" {
+  zone_id = cloudflare_zone.kozak_in.id
+  name    = "grafana.kozak.in"
+  type    = "A"
+  value   = "89.221.215.36"
+  proxied = true
+}
+
+resource "cloudflare_record" "kozak_in_prom" {
+  zone_id = cloudflare_zone.kozak_in.id
+  name    = "prom.kozak.in"
+  type    = "A"
+  value   = "89.221.215.36"
+  proxied = true
+}
+
+resource "cloudflare_record" "kozak_in_alertmanager" {
+  zone_id = cloudflare_zone.kozak_in.id
+  name    = "alertmanager.kozak.in"
+  type    = "A"
+  value   = "89.221.215.36"
+  proxied = true
+}
+
 resource "cloudflare_record" "kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"

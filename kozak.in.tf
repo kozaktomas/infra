@@ -26,6 +26,14 @@ resource "cloudflare_record" "kozak_in_prom" {
   proxied = true
 }
 
+resource "cloudflare_record" "kozak_in_push_gateway" {
+  zone_id = cloudflare_zone.kozak_in.id
+  name    = "push.kozak.in"
+  type    = "A"
+  value   = "89.221.215.36"
+  proxied = true
+}
+
 resource "cloudflare_record" "kozak_in_alertmanager" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "alertmanager.kozak.in"

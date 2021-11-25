@@ -60,35 +60,11 @@ resource "cloudflare_record" "kozak_in_mx_2" {
   proxied  = false
 }
 
-resource "cloudflare_record" "kozak_in_sendgrid_em" {
-  zone_id = cloudflare_zone.kozak_in.id
-  name    = "em7509.kozak.in"
-  type    = "CNAME"
-  value   = "u12651329.wl080.sendgrid.net"
-  proxied = false
-}
-
-resource "cloudflare_record" "kozak_in_sendgrid_s1" {
-  zone_id = cloudflare_zone.kozak_in.id
-  name    = "s1._domainkey.kozak.in"
-  type    = "CNAME"
-  value   = "s1.domainkey.u12651329.wl080.sendgrid.net"
-  proxied = false
-}
-
-resource "cloudflare_record" "kozak_in_sendgrid_s2" {
-  zone_id = cloudflare_zone.kozak_in.id
-  name    = "s2._domainkey.kozak.in"
-  type    = "CNAME"
-  value   = "s2.domainkey.u12651329.wl080.sendgrid.net"
-  proxied = false
-}
-
 resource "cloudflare_record" "kozak_in_spf" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"
   type    = "TXT"
-  value   = "v=spf1 include:sendgrid.net include:spf.seznam.cz ~all"
+  value   = "v=spf1 include:spf.seznam.cz ~all"
 }
 
 resource "cloudflare_record" "kozak_in_google_verification" {

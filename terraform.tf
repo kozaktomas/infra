@@ -8,6 +8,11 @@ variable "CLOUDFLARE_API_KEY" {
   description = "Cloudflare API key"
 }
 
+variable "GOOGLE_PROJECT_ID" {
+  type        = string
+  description = "Google project ID (e.g. project-name-346616)"
+}
+
 terraform {
   backend "http" {
     address        = "https://gitlab.com/api/v4/projects/30017932/terraform/state/infra"
@@ -30,3 +35,15 @@ provider "cloudflare" {
   email   = var.CLOUDFLARE_EMAIL
   api_key = var.CLOUDFLARE_API_KEY
 }
+
+provider "google" {
+  project = var.GOOGLE_PROJECT_ID
+  region  = "europe-west1"
+  zone    = "europe-west1-b"
+}
+
+resource "google_container_registry" "registry" {
+  project  = var.GOOGLE_PROJECT_ID
+  location = "EU"
+}
+

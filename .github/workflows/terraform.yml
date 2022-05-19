@@ -15,12 +15,18 @@ jobs:
       TF_VAR_BACKEND_TOKEN: ${{ secrets.TF_VAR_BACKEND_TOKEN }}
       TF_VAR_CLOUDFLARE_EMAIL: ${{ secrets.TF_VAR_CLOUDFLARE_EMAIL }}
       TF_VAR_CLOUDFLARE_API_KEY: ${{ secrets.TF_VAR_CLOUDFLARE_API_KEY }}
+      TF_VAR_GOOGLE_PROJECT_ID: ${{ secrets.TF_VAR_GOOGLE_PROJECT_ID }}
+      GOOGLE_JSON_CONTENT: ${{ secrets.GOOGLE_JSON_CONTENT }}
+      GOOGLE_APPLICATION_CREDENTIALS: gcp.json
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
+
+      - name: Prepare GCP json auth file
+        run: echo -n $GOOGLE_JSON_CONTENT > $GOOGLE_APPLICATION_CREDENTIALS
 
       - name: Terraform Format
         id: fmt
@@ -37,7 +43,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color
+        run: ls && terraform plan -no-color
         continue-on-error: true
 
       - uses: actions/github-script@v5

@@ -81,3 +81,21 @@ resource "cloudflare_record" "kozak_in_google_verification" {
   type    = "TXT"
   value   = "google-site-verification=KUYM3CgBnxvUpUz4_Kn9m17cX8SqTZ5IFKQ7rOukCwA"
 }
+
+resource "cloudflare_record" "kozak_in_miluji_praci_old" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "CNAME"
+  name    = "slack-milujipraci"
+  value   = "ghs.googlehosted.com"
+  proxied = false
+  ttl     = 1
+}
+
+resource "cloudflare_record" "kozak_in_miluji_praci" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "CNAME"
+  name    = "milujipraci"
+  value   = "ghs.googlehosted.com"
+  proxied = false
+  ttl     = 1
+}

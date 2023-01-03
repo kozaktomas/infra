@@ -31,15 +31,6 @@ resource "google_service_account" "playground_veselice" {
   display_name = "SA for ${local.playground_veselice_name} cloud run"
 }
 
-# https://cloud.google.com/firestore/docs/security/iam
-resource "google_project_iam_binding" "playground_veselice" {
-  role    = "roles/datastore.user"
-  project = var.GOOGLE_PROJECT_ID
-  members = [
-    "serviceAccount:${google_service_account.playground_veselice.email}"
-  ]
-}
-
 resource "google_cloud_run_service" "playground_veselice" {
   name     = local.playground_veselice_name
   location = "europe-west1"

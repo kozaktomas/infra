@@ -1,4 +1,5 @@
 resource "cloudflare_zone" "lojzatv_cz" {
+  account_id = var.CLOUDFLARE_ACCOUNT_ID
   zone = "lojzatv.cz"
 }
 

@@ -1,3 +1,8 @@
+variable "CLOUDFLARE_ACCOUNT_ID" {
+  type        = string
+  description = "Cloudflare account ID"
+}
+
 variable "CLOUDFLARE_EMAIL" {
   type        = string
   description = "Cloudflare email"

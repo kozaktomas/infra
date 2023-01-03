@@ -17,6 +17,8 @@ resource "google_project_iam_binding" "lesempolem_backend" {
 }
 
 resource "google_cloud_run_service" "lesempolem_backend" {
+  depends_on = [google_project_iam_binding.lesempolem_backend]
+
   name     = local.lesempolem_backend_name
   location = "europe-west1"
 
@@ -38,7 +40,7 @@ resource "google_cloud_run_service" "lesempolem_backend" {
     }
     spec {
       containers {
-        image = "eu.gcr.io/${var.GOOGLE_PROJECT_ID}/kotrzina/lesempolem-backend@sha256:1de2e94695170cd892d8adddf77f42a5750111eac0386b1235be4d0db5d81fe7"
+        image = "eu.gcr.io/${var.GOOGLE_PROJECT_ID}/kotrzina/lesempolem-backend@sha256:b64d03be398f7b4d50e841061bb578552a2981c7e3437b8031509fbb1fb03103"
         ports {
           name           = "http1"
           container_port = 8080
@@ -56,7 +58,7 @@ resource "google_cloud_run_service" "lesempolem_backend" {
 
         env {
           name  = "GOOGLE_FIRESTORE_COLLECTION_PREFIX"
-          value = "lesempolem-backend"
+          value = "lesempolem-backend-"
         }
 
       }

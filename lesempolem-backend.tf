@@ -58,7 +58,7 @@ resource "google_cloud_run_service" "lesempolem_backend" {
           name  = "GOOGLE_FIRESTORE_COLLECTION_PREFIX"
           value = "lesempolem-backend"
         }
-        
+
       }
       service_account_name = google_service_account.lesempolem_backend.email
       timeout_seconds      = 5

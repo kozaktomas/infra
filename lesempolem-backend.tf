@@ -7,18 +7,7 @@ resource "google_service_account" "lesempolem_backend" {
   display_name = "SA for ${local.lesempolem_backend_name} cloud run"
 }
 
-# https://cloud.google.com/firestore/docs/security/iam
-resource "google_project_iam_binding" "lesempolem_backend" {
-  role    = "roles/datastore.user"
-  project = var.GOOGLE_PROJECT_ID
-  members = [
-    "serviceAccount:${google_service_account.lesempolem_backend.email}"
-  ]
-}
-
 resource "google_cloud_run_service" "lesempolem_backend" {
-  depends_on = [google_project_iam_binding.lesempolem_backend]
-
   name     = local.lesempolem_backend_name
   location = "europe-west1"
 

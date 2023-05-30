@@ -12,7 +12,7 @@ resource "google_cloud_run_service" "lesempolem_backend" {
   location = "europe-west1"
 
   metadata {
-    namespace   = var.GOOGLE_PROJECT_ID
+    namespace = var.GOOGLE_PROJECT_ID
     annotations = {
       "run.googleapis.com/ingress"        = "all"
       "run.googleapis.com/ingress-status" = "all"

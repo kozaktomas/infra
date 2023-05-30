@@ -106,7 +106,7 @@ resource "google_cloud_run_service" "playground_veselice" {
 
   lifecycle {
     ignore_changes = [
-        metadata[0].annotations["run.googleapis.com/operation-id"],
+      metadata[0].annotations["run.googleapis.com/operation-id"],
     ]
   }
 }

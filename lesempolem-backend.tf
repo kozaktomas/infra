@@ -12,7 +12,7 @@ resource "google_cloud_run_service" "lesempolem_backend" {
   location = "europe-west1"
 
   metadata {
-    namespace = var.GOOGLE_PROJECT_ID
+    namespace   = var.GOOGLE_PROJECT_ID
     annotations = {
       "run.googleapis.com/ingress"        = "all"
       "run.googleapis.com/ingress-status" = "all"
@@ -54,6 +54,12 @@ resource "google_cloud_run_service" "lesempolem_backend" {
       service_account_name = google_service_account.lesempolem_backend.email
       timeout_seconds      = 5
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      metadata[0].annotations["run.googleapis.com/operation-id"],
+    ]
   }
 }
 

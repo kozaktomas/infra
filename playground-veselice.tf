@@ -103,6 +103,12 @@ resource "google_cloud_run_service" "playground_veselice" {
       timeout_seconds      = 5
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+        metadata[0].annotations["run.googleapis.com/operation-id"],
+    ]
+  }
 }
 
 resource "google_cloud_run_service_iam_member" "playground_veselice" {

@@ -10,38 +10,6 @@ resource "cloudflare_record" "kozak_in_ip_v4" {
   proxied = true
 }
 
-resource "cloudflare_record" "kozak_in_grafana" {
-  zone_id = cloudflare_zone.kozak_in.id
-  name    = "grafana.kozak.in"
-  type    = "A"
-  value   = "89.221.215.36"
-  proxied = true
-}
-
-resource "cloudflare_record" "kozak_in_prom" {
-  zone_id = cloudflare_zone.kozak_in.id
-  name    = "prom.kozak.in"
-  type    = "A"
-  value   = "89.221.215.36"
-  proxied = true
-}
-
-resource "cloudflare_record" "kozak_in_push_gateway" {
-  zone_id = cloudflare_zone.kozak_in.id
-  name    = "push.kozak.in"
-  type    = "A"
-  value   = "89.221.215.36"
-  proxied = true
-}
-
-resource "cloudflare_record" "kozak_in_alertmanager" {
-  zone_id = cloudflare_zone.kozak_in.id
-  name    = "alertmanager.kozak.in"
-  type    = "A"
-  value   = "89.221.215.36"
-  proxied = true
-}
-
 resource "cloudflare_record" "kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"
@@ -80,22 +48,4 @@ resource "cloudflare_record" "kozak_in_google_verification" {
   name    = "kozak.in"
   type    = "TXT"
   value   = "google-site-verification=KUYM3CgBnxvUpUz4_Kn9m17cX8SqTZ5IFKQ7rOukCwA"
-}
-
-resource "cloudflare_record" "kozak_in_miluji_praci_old" {
-  zone_id = cloudflare_zone.kozak_in.id
-  type    = "CNAME"
-  name    = "slack-milujipraci"
-  value   = "ghs.googlehosted.com"
-  proxied = false
-  ttl     = 1
-}
-
-resource "cloudflare_record" "kozak_in_miluji_praci" {
-  zone_id = cloudflare_zone.kozak_in.id
-  type    = "CNAME"
-  name    = "milujipraci"
-  value   = "ghs.googlehosted.com"
-  proxied = false
-  ttl     = 1
 }

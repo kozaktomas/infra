@@ -26,6 +26,9 @@ resource "google_cloud_run_service" "lesempolem_backend" {
         "autoscaling.knative.dev/maxScale" = "3"
         "run.googleapis.com/client-name"   = "terraform"
       }
+      labels = {
+        "run.googleapis.com/startupProbeType" = "Default"
+      }
     }
     spec {
       containers {

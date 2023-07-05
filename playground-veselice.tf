@@ -4,6 +4,12 @@ variable "PLAYGROUND_VESELICE_JWT_SIGNING_KEY" {
   sensitive   = true
 }
 
+variable "PLAYGROUND_VESELICE_JWT_PASSWORD_CHANGE_KEY" {
+  type        = string
+  description = "JWT signing key for password change"
+  sensitive   = true
+}
+
 variable "PLAYGROUND_VESELICE_REGISTRATION_CODE" {
   type        = string
   description = "Password for registration"
@@ -56,7 +62,7 @@ resource "google_cloud_run_service" "playground_veselice" {
     }
     spec {
       containers {
-        image = "eu.gcr.io/${var.GOOGLE_PROJECT_ID}/kotrzina/court-reservations@sha256:41cae22111973657e940600262933825548a8f4d802706d61f842775c5617ba3"
+        image = "eu.gcr.io/${var.GOOGLE_PROJECT_ID}/kotrzina/court-reservations@sha256:eb04e9a03f24321953727b7024af474ab3517bc38751da4738b1004da6d530dc"
         ports {
           name           = "http1"
           container_port = 8080
@@ -85,6 +91,11 @@ resource "google_cloud_run_service" "playground_veselice" {
         env {
           name  = "JWT_SIGNING_KEY"
           value = var.PLAYGROUND_VESELICE_JWT_SIGNING_KEY
+        }
+
+        env {
+          name  = "JWT_PASSWORD_CHANGE_KEY"
+          value = var.PLAYGROUND_VESELICE_JWT_PASSWORD_CHANGE_KEY
         }
 
         env {

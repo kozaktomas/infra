@@ -32,7 +32,7 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          TF_VAR_BACKEND_USERNAME: op://gha-kozaktomas-infra/tf-backend/username
+          TF_VAR_BACKEND_USERNAME: op://gha-kozaktomas-infra/tf-backend/user
           TF_VAR_BACKEND_TOKEN: op://gha-kozaktomas-infra/tf-backend/token
 
       - name: Setup Terraform

@@ -11,14 +11,6 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:
-      TF_VAR_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.TF_VAR_CLOUDFLARE_ACCOUNT_ID }}
-      TF_VAR_CLOUDFLARE_EMAIL: ${{ secrets.TF_VAR_CLOUDFLARE_EMAIL }}
-      TF_VAR_CLOUDFLARE_API_KEY: ${{ secrets.TF_VAR_CLOUDFLARE_API_KEY }}
-      TF_VAR_PLAYGROUND_VESELICE_ADMINS: ${{ secrets.TF_VAR_PLAYGROUND_VESELICE_ADMINS }}
-      TF_VAR_PLAYGROUND_VESELICE_DISCORD_URL: ${{ secrets.TF_VAR_PLAYGROUND_VESELICE_DISCORD_URL }}
-      TF_VAR_PLAYGROUND_VESELICE_JWT_SIGNING_KEY: ${{ secrets.TF_VAR_PLAYGROUND_VESELICE_JWT_SIGNING_KEY }}
-      TF_VAR_PLAYGROUND_VESELICE_JWT_PASSWORD_CHANGE_KEY: ${{ secrets.TF_VAR_PLAYGROUND_VESELICE_JWT_PASSWORD_CHANGE_KEY }}
-      TF_VAR_PLAYGROUND_VESELICE_REGISTRATION_CODE: ${{ secrets.TF_VAR_PLAYGROUND_VESELICE_REGISTRATION_CODE }}
       GOOGLE_APPLICATION_CREDENTIALS: gcp.json
     steps:
       - name: Checkout
@@ -34,6 +26,14 @@ jobs:
           TF_VAR_BACKEND_TOKEN: op://gha-kozaktomas-infra/tf-backend/token
           TF_VAR_GOOGLE_PROJECT_ID: op://gha-kozaktomas-infra/gcloud/project_id
           GOOGLE_JSON_CONTENT: op://gha-kozaktomas-infra/gcloud/json
+          TF_VAR_CLOUDFLARE_ACCOUNT_ID: op://gha-kozaktomas-infra/cloudflare/account_id
+          TF_VAR_CLOUDFLARE_EMAIL: op://gha-kozaktomas-infra/cloudflare/email
+          TF_VAR_CLOUDFLARE_API_KEY: op://gha-kozaktomas-infra/cloudflare/api_key
+          TF_VAR_PLAYGROUND_VESELICE_ADMINS: op://gha-kozaktomas-infra/playground-veselice/admins
+          TF_VAR_PLAYGROUND_VESELICE_DISCORD_URL: op://gha-kozaktomas-infra/playground-veselice/discord_hook
+          TF_VAR_PLAYGROUND_VESELICE_JWT_SIGNING_KEY: op://gha-kozaktomas-infra/playground-veselice/jwt_signing_key
+          TF_VAR_PLAYGROUND_VESELICE_JWT_PASSWORD_CHANGE_KEY: op://gha-kozaktomas-infra/playground-veselice/jwt_password_change_key
+          TF_VAR_PLAYGROUND_VESELICE_REGISTRATION_CODE: op://gha-kozaktomas-infra/playground-veselice/registration_code
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2

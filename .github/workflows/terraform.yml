@@ -11,8 +11,6 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:
-      TF_VAR_BACKEND_USERNAME: ${{ secrets.TF_VAR_BACKEND_USERNAME }}
-      TF_VAR_BACKEND_TOKEN: ${{ secrets.TF_VAR_BACKEND_TOKEN }}
       TF_VAR_CLOUDFLARE_ACCOUNT_ID: ${{ secrets.TF_VAR_CLOUDFLARE_ACCOUNT_ID }}
       TF_VAR_CLOUDFLARE_EMAIL: ${{ secrets.TF_VAR_CLOUDFLARE_EMAIL }}
       TF_VAR_CLOUDFLARE_API_KEY: ${{ secrets.TF_VAR_CLOUDFLARE_API_KEY }}
@@ -26,7 +24,16 @@ jobs:
       GOOGLE_APPLICATION_CREDENTIALS: gcp.json
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Load secret
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: true
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          TF_VAR_BACKEND_USERNAME: op://gha-kozaktomas-infra/tf-backend/username
+          TF_VAR_BACKEND_TOKEN: op://gha-kozaktomas-infra/tf-backend/token
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2

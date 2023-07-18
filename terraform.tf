@@ -1,21 +1,25 @@
 variable "CLOUDFLARE_ACCOUNT_ID" {
   type        = string
   description = "Cloudflare account ID"
+  sensitive   = true
 }
 
 variable "CLOUDFLARE_EMAIL" {
   type        = string
   description = "Cloudflare email"
+  sensitive   = true
 }
 
 variable "CLOUDFLARE_API_KEY" {
   type        = string
   description = "Cloudflare API key"
+  sensitive   = true
 }
 
 variable "GOOGLE_PROJECT_ID" {
   type        = string
   description = "Google project ID (e.g. project-name-346616)"
+  sensitive   = true
 }
 
 terraform {

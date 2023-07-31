@@ -20,6 +20,8 @@ jobs:
 
   terraform:
     name: "Terraform"
+    needs:
+      - "gitleaks"
     runs-on: ubuntu-latest
     env:
       GOOGLE_APPLICATION_CREDENTIALS: gcp.json

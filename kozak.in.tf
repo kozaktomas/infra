@@ -6,7 +6,7 @@ resource "cloudflare_record" "kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"
   type    = "A"
-  value   = "89.221.215.36"
+  value   = "49.13.69.212"
   proxied = true
 }
 
@@ -14,7 +14,7 @@ resource "cloudflare_record" "kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"
   type    = "AAAA"
-  value   = "2a02:2b88:2:424::0"
+  value   = "2a01:4f8:c013:751::1"
   proxied = true
 }
 

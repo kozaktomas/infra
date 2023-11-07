@@ -1,5 +1,6 @@
 resource "cloudflare_zone" "talko_cz" {
   zone = "talko.cz"
+  account_id = var.CLOUDFLARE_ACCOUNT_ID
 }
 
 resource "cloudflare_record" "talko_cz_ip_v4" {

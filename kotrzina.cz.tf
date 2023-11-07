@@ -1,5 +1,6 @@
 resource "cloudflare_zone" "kotrzina_cz" {
   zone = "kotrzina.cz"
+  account_id = var.CLOUDFLARE_ACCOUNT_ID
 }
 
 resource "cloudflare_record" "kotrzina_cz_cname" {

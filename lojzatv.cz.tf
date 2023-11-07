@@ -1,5 +1,6 @@
 resource "cloudflare_zone" "lojzatv_cz" {
   zone = "lojzatv.cz"
+  account_id = var.CLOUDFLARE_ACCOUNT_ID
 }
 
 resource "cloudflare_record" "lojzatv_cz_ip_v4" {

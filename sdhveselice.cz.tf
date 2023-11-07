@@ -1,5 +1,6 @@
 resource "cloudflare_zone" "sdhveselice_cz" {
   zone = "sdhveselice.cz"
+  account_id = var.CLOUDFLARE_ACCOUNT_ID
 }
 
 resource "cloudflare_record" "sdhveselice_cz" {

@@ -56,3 +56,6 @@ resource "google_container_registry" "registry" {
   location = "EU"
 }
 
+provider "aws" {
+  region = "eu-west-2"
+}

@@ -1,5 +1,5 @@
 resource "cloudflare_zone" "kozak_in" {
-  zone = "kozak.in"
+  zone       = "kozak.in"
   account_id = var.CLOUDFLARE_ACCOUNT_ID
 }
 
@@ -17,6 +17,20 @@ resource "cloudflare_record" "kozak_in_ip_v6" {
   type    = "AAAA"
   value   = "2a01:4f8:c013:751::1"
   proxied = true
+}
+
+resource "cloudflare_record" "mimir_kozak_in_ip_v4" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "A"
+  name    = "mimir"
+  value   = "49.13.69.212"
+}
+
+resource "cloudflare_record" "mimir_kozak_in_ip_v6" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "AAAA"
+  name    = "mimir"
+  value   = "2a01:4f8:c013:751::1"
 }
 
 resource "cloudflare_record" "kozak_in_mx_1" {

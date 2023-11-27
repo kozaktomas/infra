@@ -33,6 +33,20 @@ resource "cloudflare_record" "mimir_kozak_in_ip_v6" {
   value   = "2a01:4f8:c013:751::1"
 }
 
+resource "cloudflare_record" "static_kozak_in_ip_v4" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "A"
+  name    = "static"
+  value   = "49.13.69.212"
+}
+
+resource "cloudflare_record" "static_kozak_in_ip_v6" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "AAAA"
+  name    = "static"
+  value   = "2a01:4f8:c013:751::1"
+}
+
 resource "cloudflare_record" "kozak_in_mx_1" {
   zone_id  = cloudflare_zone.kozak_in.id
   name     = "kozak.in"

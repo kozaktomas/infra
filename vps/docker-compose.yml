@@ -82,6 +82,8 @@ services:
   svazzen_cz:
     image: nginx
     labels:
+      - "traefik.http.middlewares.svazzen-cz.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.svazzen-cz.redirectscheme.permanent=true"
       - "traefik.http.routers.svazzen-cz.rule=Host(`svazzen.cz`)"
       - "traefik.http.routers.svazzen-cz.tls=true"
       - "traefik.http.routers.svazzen-cz.tls.certresolver=le"

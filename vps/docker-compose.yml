@@ -11,6 +11,9 @@ services:
       - "--certificatesresolvers.le.acme.email=kozak@talko.cz"
       - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
     ports:
       - "80:80"
       - "443:443"
@@ -85,8 +88,6 @@ services:
       - "traefik.http.routers.svazzen-cz.rule=Host(`svazzen.cz`)"
       - "traefik.http.routers.svazzen-cz.tls=true"
       - "traefik.http.routers.svazzen-cz.tls.certresolver=le"
-      - "traefik.http.middlewares.svazzen-cz-rthttps.redirectscheme.scheme=https"
-      - "traefik.http.routers.redirs.middlewares=svazzen-cz-rthttps"
     volumes:
       - ./nginx/svazzen.conf:/etc/nginx/conf.d/default.conf
       - ./svazzen:/var/www/html

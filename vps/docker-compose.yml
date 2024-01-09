@@ -38,6 +38,8 @@ services:
       - "traefik.http.routers.kozak-in.tls.certresolver=le"
     volumes:
       - ./data/kozak-in/sock:/sock
+    ports:
+      - "8091:8080"
     command:
       - "--app=personal_web"
       - "--port=8080"

@@ -97,4 +97,5 @@ services:
       - traefik
 
 networks:
-  traefik:
+  traef:
+    external: true

@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.11
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.le.acme.email=kozak@talko.cz"
+      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8888:8080"
+    volumes:
+      - ./letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik
+
+  # kozak.in
+  kozak_in_php:
+    image: registry.gitlab.com/kozaktomas/personal-web:latest
+    volumes:
+      - ./data/kozak-in/sock:/sock
+    environment:
+      DISCORD_WEBHOOK_URL: "${KOZAK_IN_DISCORD_WEBHOOK_URL}"
+    networks:
+      - traefik
+  kozak_in_lb:
+    image: ghcr.io/kozaktomas/gophpfpm:main
+    labels:
+      - "traefik.http.routers.kozak-in.rule=Host(`kozak.in`)"
+      - "traefik.http.routers.kozak-in.tls=true"
+      - "traefik.http.routers.kozak-in.tls.certresolver=le"
+    volumes:
+      - ./data/kozak-in/sock:/sock
+    command:
+      - "--app=personal_web"
+      - "--port=8080"
+      - "--socket=/sock/php-fpm.sock"
+      - "--index-file=/var/www/html/app/index.php"
+      - "--access-log"
+      - "--fpm-pool-size=16"
+    depends_on:
+      - kozak_in_php
+    networks:
+      - traefik
+  kozak_in_php_exporter:
+    image: hipages/php-fpm_exporter
+    depends_on:
+      - kozak_in_php
+    volumes:
+      - ./data/kozak-in/sock:/sock
+    ports:
+      - "9253:9253"
+    command:
+      - "--phpfpm.scrape-uri"
+      - "unix:///sock/php-fpm.sock;/fpm-status"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true

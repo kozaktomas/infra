@@ -8,6 +8,7 @@ services:
       - "--providers.docker"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.mimir.address=:9009"
       - "--certificatesresolvers.le.acme.email=kozak@talko.cz"
       - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"

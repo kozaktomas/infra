@@ -23,7 +23,7 @@ services:
       - ./letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - traefik
+      - traef
 
   # kozak.in
   kozak_in_php:
@@ -33,7 +33,7 @@ services:
     environment:
       DISCORD_WEBHOOK_URL: "${KOZAK_IN_DISCORD_WEBHOOK_URL}"
     networks:
-      - traefik
+      - traef
   kozak_in_lb:
     image: ghcr.io/kozaktomas/gophpfpm:main
     labels:
@@ -54,7 +54,7 @@ services:
     depends_on:
       - kozak_in_php
     networks:
-      - traefik
+      - traef
   kozak_in_php_exporter:
     image: hipages/php-fpm_exporter
     depends_on:
@@ -67,7 +67,7 @@ services:
       - "--phpfpm.scrape-uri"
       - "unix:///sock/php-fpm.sock;/fpm-status"
     networks:
-      - traefik
+      - traef
   static_kozak_in:
     image: nginx
     labels:
@@ -80,7 +80,7 @@ services:
     ports:
       - "8082:80"
     networks:
-      - traefik
+      - traef
 
   # svazzen.cz
   svazzen_cz:
@@ -95,7 +95,7 @@ services:
     ports:
       - "8083:80"
     networks:
-      - traefik
+      - traef
 
 networks:
   traef:

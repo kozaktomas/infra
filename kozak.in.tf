@@ -33,17 +33,17 @@ resource "cloudflare_record" "mimir_kozak_in_ip_v6" {
   value   = "2a01:4f8:c013:751::1"
 }
 
-resource "cloudflare_record" "treafik_kozak_in_ip_v4" {
+resource "cloudflare_record" "traefik_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
-  name    = "treafik"
+  name    = "traefik"
   value   = "49.13.69.212"
 }
 
-resource "cloudflare_record" "treafik_kozak_in_ip_v6" {
+resource "cloudflare_record" "traefik_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
-  name    = "treafik"
+  name    = "traefik"
   value   = "2a01:4f8:c013:751::1"
 }
 

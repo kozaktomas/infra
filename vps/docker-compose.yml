@@ -23,7 +23,8 @@ services:
       - "traefik.http.routers.dashboard.tls.certresolver=le"
       - "traefik.http.routers.api.tls=true"
       - "traefik.http.routers.api.tls.certresolver=le"
-      - "traefik.http.middlewares.test-auth.basicauth.users=tomas:$$2y$$05$$N/VKTiO5sJTfxn1xybZ8gelqg7d4fdUb4tW67WVsgCmiqsNeUP.W."
+      - "traefik.http.routers.mydashboard.middlewares=myauth"
+      - "traefik.http.middlewares.myauth.basicauth.users=tomas:$$2y$$05$$N/VKTiO5sJTfxn1xybZ8gelqg7d4fdUb4tW67WVsgCmiqsNeUP.W."
     ports:
       - "80:80"
       - "443:443"

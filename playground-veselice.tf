@@ -42,7 +42,7 @@ resource "google_cloud_run_service" "playground_veselice" {
   location = "europe-west1"
 
   metadata {
-    namespace = var.GOOGLE_PROJECT_ID
+    namespace   = var.GOOGLE_PROJECT_ID
     annotations = {
       "run.googleapis.com/ingress"        = "all"
       "run.googleapis.com/ingress-status" = "all"
@@ -62,7 +62,7 @@ resource "google_cloud_run_service" "playground_veselice" {
     }
     spec {
       containers {
-        image = "eu.gcr.io/${var.GOOGLE_PROJECT_ID}/kotrzina/court-reservations@sha256:4ee92325a30bac67caa382c8afd0ea670353f2de115b8b0956a942c9e74314e6"
+        image = "europe-west1-docker.pkg.dev/${var.GOOGLE_PROJECT_ID}/kotrzina/court-reservations/backend@sha256:ddc7881ee97c0b205010bf39aa9a9706714a8eda05955e49b8b1c014f6df4c02"
         ports {
           name           = "http1"
           container_port = 8080

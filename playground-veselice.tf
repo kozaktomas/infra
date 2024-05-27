@@ -62,7 +62,7 @@ resource "google_cloud_run_service" "playground_veselice" {
     }
     spec {
       containers {
-        image = "europe-west1-docker.pkg.dev/${var.GOOGLE_PROJECT_ID}/kotrzina/court-reservations/backend@sha256:92ad82dfa6c169b2a8a16126ee05e518ab13ae149e183c70f868083814c5b00a"
+        image = "europe-west1-docker.pkg.dev/${var.GOOGLE_PROJECT_ID}/kotrzina/court-reservations/backend@sha256:f490e7ac9c4da61fd1827324374e21406372453bdf7e282c1115e4c33ca259ce"
         ports {
           name           = "http1"
           container_port = 8080

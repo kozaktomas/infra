@@ -44,6 +44,13 @@ resource "cloudflare_record" "talko_cz_spf" {
   value   = "v=spf1 include:spf.seznam.cz ~all"
 }
 
+resource "cloudflare_record" "talko_cz_dkim_sig" {
+  zone_id = cloudflare_zone.talko_cz.id
+  name    = "szn20221014._domainkey.talko.cz."
+  type    = "CNAME"
+  value   = "szn20221014._domainkey.seznam.cz."
+}
+
 resource "cloudflare_record" "talko_cz_dmarc" {
   zone_id = cloudflare_zone.talko_cz.id
   name    = "_dmarc"

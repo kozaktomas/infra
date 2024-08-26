@@ -16,7 +16,7 @@ resource "cloudflare_record" "hriste_kotrzina_cz_cname" {
   zone_id = cloudflare_zone.kotrzina_cz.id
   type    = "CNAME"
   name    = "hriste"
-  value   = "court-reservations.pages.dev"
+  value   = "hriste.pages.dev"
   proxied = true
   ttl     = 1
 }

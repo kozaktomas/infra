@@ -21,6 +21,14 @@ resource "cloudflare_record" "hriste_kotrzina_cz_cname" {
   ttl     = 1
 }
 
+resource "cloudflare_record" "pub_kotrzina_cz" {
+  zone_id = cloudflare_zone.kotrzina_cz.id
+  name    = "pub"
+  type    = "A"
+  value   = "49.13.69.212"
+  proxied = false
+}
+
 resource "cloudflare_record" "kotrzina_cz_mx_1" {
   zone_id  = cloudflare_zone.kotrzina_cz.id
   name     = "kotrzina.cz"

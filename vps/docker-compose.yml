@@ -11,9 +11,6 @@ services:
       - "--certificatesresolvers.le.acme.email=kozak@talko.cz"
       - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
-      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
     labels:
       - "traefik.http.routers.dashboard.rule=Host(`traefik.kozak.in`)"
       - "traefik.http.routers.dashboard.service=dashboard@internal"
@@ -25,6 +22,8 @@ services:
       - "traefik.http.routers.api.tls.certresolver=le"
       - "traefik.http.routers.api.middlewares=myauth"
       - "traefik.http.middlewares.myauth.basicauth.users=tomas:$$2y$$05$$N/VKTiO5sJTfxn1xybZ8gelqg7d4fdUb4tW67WVsgCmiqsNeUP.W."
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
     ports:
       - "80:80"
       - "443:443"
@@ -47,9 +46,14 @@ services:
   kozak_in_lb:
     image: ghcr.io/kozaktomas/gophpfpm:main
     labels:
+      - "traefik.http.routers.kozak-in.entrypoints=websecure"
       - "traefik.http.routers.kozak-in.rule=Host(`kozak.in`)"
       - "traefik.http.routers.kozak-in.tls=true"
       - "traefik.http.routers.kozak-in.tls.certresolver=le"
+      - "traefik.http.routers.kozak-in-redirect.entrypoints=web"
+      - "traefik.http.routers.kozak-in-redirect.rule=Host(`kozak.in`)"
+      - "traefik.http.routers.kozak-in-redirect.tls=false"
+      - "traefik.http.routers.kozak-in-redirect.middlewares=redirect-to-https"
     volumes:
       - ./data/kozak-in/sock:/sock
     ports:
@@ -81,9 +85,14 @@ services:
   static_kozak_in:
     image: nginx
     labels:
+      - "traefik.http.routers.static-kozak-in.entrypoints=websecure"
       - "traefik.http.routers.static-kozak-in.rule=Host(`static.kozak.in`)"
       - "traefik.http.routers.static-kozak-in.tls=true"
       - "traefik.http.routers.static-kozak-in.tls.certresolver=le"
+      - "traefik.http.routers.static-kozak-in-redirect.entrypoints=web"
+      - "traefik.http.routers.static-kozak-in-redirect.rule=Host(`static.kozak.in`)"
+      - "traefik.http.routers.static-kozak-in-redirect.tls=false"
+      - "traefik.http.routers.static-kozak-in-redirect.middlewares=redirect-to-https"
     volumes:
       - ./nginx/static.conf:/etc/nginx/conf.d/default.conf
       - ./static:/var/www/html
@@ -96,9 +105,14 @@ services:
   svazzen_cz:
     image: nginx
     labels:
+      - "traefik.http.routers.svazzen-cz.entrypoints=websecure"
       - "traefik.http.routers.svazzen-cz.rule=Host(`svazzen.cz`)"
       - "traefik.http.routers.svazzen-cz.tls=true"
       - "traefik.http.routers.svazzen-cz.tls.certresolver=le"
+      - "traefik.http.routers.svazzen-cz-redirect.entrypoints=web"
+      - "traefik.http.routers.svazzen-cz-redirect.rule=Host(`svazzen.cz`)"
+      - "traefik.http.routers.svazzen-cz-redirect.tls=false"
+      - "traefik.http.routers.svazzen-cz-redirect.middlewares=redirect-to-https"
     volumes:
       - ./nginx/svazzen.conf:/etc/nginx/conf.d/default.conf
       - ./svazzen:/var/www/html

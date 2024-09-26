@@ -121,6 +121,14 @@ services:
     networks:
       - traef
 
+  # 7 - pub app
+  redis:
+    image: redis:latest
+    volumes:
+      - ./redis_data:/data
+    networks:
+      - traef
+
 networks:
   traef:
     external: true

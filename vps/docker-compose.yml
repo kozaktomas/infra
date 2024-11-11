@@ -136,7 +136,7 @@ services:
     environment:
       DEFAULT_CHECKSUM: "NONE"
       DEFAULT_COMPRESSION: "GZ"
-      DEFAULT_BACKUP_INTERVAL: "5" # Each 5 minutes
+      DEFAULT_BACKUP_INTERVAL: "480" # 8 hours
       DEFAULT_RESOURCE_OPTIMIZED: "TRUE"
       CONTAINER_ENABLE_MONITORING: "FALSE"
       # https://github.com/tiredofit/docker-db-backup/issues/369#issuecomment-2363864867

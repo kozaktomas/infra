@@ -2,20 +2,20 @@
 
 set -e
 
-echo "Setting up environment variables"
-export TF_VAR_BACKEND_USERNAME="$(op read op://gha-kozaktomas-infra/tf-backend/user)"
-export TF_VAR_BACKEND_TOKEN="$(op read op://gha-kozaktomas-infra/tf-backend/token)"
-export TF_VAR_GOOGLE_PROJECT_ID="$(op read op://gha-kozaktomas-infra/gcloud/project_id)"
-export GOOGLE_JSON_CONTENT="$(op read op://gha-kozaktomas-infra/gcloud/json)"
-export TF_VAR_CLOUDFLARE_ACCOUNT_ID="$(op read op://gha-kozaktomas-infra/cloudflare/account_id)"
-export TF_VAR_CLOUDFLARE_EMAIL="$(op read op://gha-kozaktomas-infra/cloudflare/email)"
-export TF_VAR_CLOUDFLARE_API_KEY="$(op read op://gha-kozaktomas-infra/cloudflare/api_key)"
-export AWS_ACCESS_KEY_ID=$(op item get jninrmdlybbrvcxtwi4vnkr534 --fields label=access_key --reveal)
-export AWS_SECRET_ACCESS_KEY=$(op item get jninrmdlybbrvcxtwi4vnkr534 --fields label=secret_key --reveal)
-export MIMIR_API_USER=$(op item get lcduxhz7hzx3j44hd4gmrqazve --fields label=username)
-export MIMIR_API_KEY=$(op item get lcduxhz7hzx3j44hd4gmrqazve --fields label=password --reveal)
-export MIMIR_ADDRESS=https://mimir.kozak.in
-export MIMIR_TENANT_ID=kozak
+#echo "Setting up environment variables"
+#export TF_VAR_BACKEND_USERNAME="$(op read op://gha-kozaktomas-infra/tf-backend/user)"
+#export TF_VAR_BACKEND_TOKEN="$(op read op://gha-kozaktomas-infra/tf-backend/token)"
+#export TF_VAR_GOOGLE_PROJECT_ID="$(op read op://gha-kozaktomas-infra/gcloud/project_id)"
+#export GOOGLE_JSON_CONTENT="$(op read op://gha-kozaktomas-infra/gcloud/json)"
+#export TF_VAR_CLOUDFLARE_ACCOUNT_ID="$(op read op://gha-kozaktomas-infra/cloudflare/account_id)"
+#export TF_VAR_CLOUDFLARE_EMAIL="$(op read op://gha-kozaktomas-infra/cloudflare/email)"
+#export TF_VAR_CLOUDFLARE_API_KEY="$(op read op://gha-kozaktomas-infra/cloudflare/api_key)"
+#export AWS_ACCESS_KEY_ID=$(op item get jninrmdlybbrvcxtwi4vnkr534 --fields label=access_key --reveal)
+#export AWS_SECRET_ACCESS_KEY=$(op item get jninrmdlybbrvcxtwi4vnkr534 --fields label=secret_key --reveal)
+#export MIMIR_API_USER=$(op item get lcduxhz7hzx3j44hd4gmrqazve --fields label=username)
+#export MIMIR_API_KEY=$(op item get lcduxhz7hzx3j44hd4gmrqazve --fields label=password --reveal)
+#export MIMIR_ADDRESS=https://mimir.kozak.in
+#export MIMIR_TENANT_ID=kozak
 
 set -ex
 

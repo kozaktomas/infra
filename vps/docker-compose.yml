@@ -129,6 +129,33 @@ services:
     networks:
       - traef
 
+  backup:
+    container_name: backup
+    image: tiredofit/db-backup:4.1.9
+    restart: always
+    environment:
+      DEFAULT_CHECKSUM: NONE
+      DEFAULT_COMPRESSION: GZ
+      DEFAULT_BACKUP_INTERVAL: 5 # Each 5 minutes
+      DEFAULT_RESOURCE_OPTIMIZED: TRUE
+      CONTAINER_ENABLE_MONITORING: FALSE
+      # https://github.com/tiredofit/docker-db-backup/issues/369#issuecomment-2363864867
+      DBBACKUP_USER: root
+
+      DEFAULT_BACKUP_LOCATION: S3
+      DEFAULT_S3_BUCKET: ${BACKUP_AWS_S3_BUCKET}
+      DEFAULT_S3_REGION: ${BACKUP_AWS_S3_REGION}
+      DEFAULT_S3_KEY_ID: ${BACKUP_AWS_S3_KEY_ID}
+      DEFAULT_S3_KEY_SECRET: ${BACKUP_AWS_S3_KEY_SECRET}
+
+      DB01_TYPE: redis
+      DB01_HOST: "redis"
+      DB01_S3_PATH: "w-redis"
+    networks:
+      - traef
+    depends_on:
+      - redis
+
 networks:
   traef:
     external: true

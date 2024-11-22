@@ -25,7 +25,7 @@ resource "cloudflare_record" "pub_kotrzina_cz" {
   zone_id = cloudflare_zone.kotrzina_cz.id
   name    = "pub"
   type    = "A"
-  value   = "49.13.69.212"
+  value   = "88.99.13.74"
   proxied = false
 }
 
@@ -33,7 +33,7 @@ resource "cloudflare_record" "pub_kotrzina_cz_ip_v6" {
   zone_id = cloudflare_zone.kotrzina_cz.id
   name    = "pub"
   type    = "AAAA"
-  value   = "2a01:4f8:c013:751::1"
+  value   = "2a01:4f8:c013:886a::1"
   proxied = false
 }
 

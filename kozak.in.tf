@@ -7,7 +7,7 @@ resource "cloudflare_record" "kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"
   type    = "A"
-  value   = "49.13.69.212"
+  value   = "88.99.13.74"
   proxied = true
 }
 
@@ -15,7 +15,7 @@ resource "cloudflare_record" "kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"
   type    = "AAAA"
-  value   = "2a01:4f8:c013:751::1"
+  value   = "2a01:4f8:c013:886a::1"
   proxied = true
 }
 
@@ -23,56 +23,42 @@ resource "cloudflare_record" "mimir_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
   name    = "mimir"
-  value   = "49.13.69.212"
+  value   = "88.99.13.74"
 }
 
 resource "cloudflare_record" "mimir_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
   name    = "mimir"
-  value   = "2a01:4f8:c013:751::1"
+  value   = "2a01:4f8:c013:886a::1"
 }
 
 resource "cloudflare_record" "traefik_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
   name    = "traefik"
-  value   = "49.13.69.212"
+  value   = "88.99.13.74"
 }
 
 resource "cloudflare_record" "traefik_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
   name    = "traefik"
-  value   = "2a01:4f8:c013:751::1"
+  value   = "2a01:4f8:c013:886a::1"
 }
 
 resource "cloudflare_record" "static_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
   name    = "static"
-  value   = "49.13.69.212"
+  value   = "88.99.13.74"
 }
 
 resource "cloudflare_record" "static_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
   name    = "static"
-  value   = "2a01:4f8:c013:751::1"
-}
-
-resource "cloudflare_record" "beerium_kozak_in_ip_v4" {
-  zone_id = cloudflare_zone.kozak_in.id
-  type    = "A"
-  name    = "beerium"
-  value   = "49.13.69.212"
-}
-
-resource "cloudflare_record" "beerium_kozak_in_ip_v6" {
-  zone_id = cloudflare_zone.kozak_in.id
-  type    = "AAAA"
-  name    = "beerium"
-  value   = "2a01:4f8:c013:751::1"
+  value   = "2a01:4f8:c013:886a::1"
 }
 
 resource "cloudflare_record" "kozak_in_mx_1" {

@@ -1,3 +1,8 @@
+locals {
+  vps_ipv4 = "88.99.13.74"
+  vps_ipv6 = "2a01:4f8:c013:886a::1"
+}
+
 variable "CLOUDFLARE_ACCOUNT_ID" {
   type        = string
   description = "Cloudflare account ID"

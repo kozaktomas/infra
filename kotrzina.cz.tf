@@ -1,5 +1,5 @@
 resource "cloudflare_zone" "kotrzina_cz" {
-  zone = "kotrzina.cz"
+  zone       = "kotrzina.cz"
   account_id = var.CLOUDFLARE_ACCOUNT_ID
 }
 
@@ -25,7 +25,7 @@ resource "cloudflare_record" "pub_kotrzina_cz" {
   zone_id = cloudflare_zone.kotrzina_cz.id
   name    = "pub"
   type    = "A"
-  value   = "88.99.13.74"
+  value   = local.vps_ipv4
   proxied = false
 }
 
@@ -33,7 +33,7 @@ resource "cloudflare_record" "pub_kotrzina_cz_ip_v6" {
   zone_id = cloudflare_zone.kotrzina_cz.id
   name    = "pub"
   type    = "AAAA"
-  value   = "2a01:4f8:c013:886a::1"
+  value   = local.vps_ipv6
   proxied = false
 }
 

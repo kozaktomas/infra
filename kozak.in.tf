@@ -7,7 +7,7 @@ resource "cloudflare_record" "kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"
   type    = "A"
-  value   = "88.99.13.74"
+  value   = local.vps_ipv4
   proxied = true
 }
 
@@ -15,7 +15,7 @@ resource "cloudflare_record" "kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   name    = "kozak.in"
   type    = "AAAA"
-  value   = "2a01:4f8:c013:886a::1"
+  value   = local.vps_ipv6
   proxied = true
 }
 
@@ -23,70 +23,70 @@ resource "cloudflare_record" "mimir_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
   name    = "mimir"
-  value   = "88.99.13.74"
+  value   = local.vps_ipv4
 }
 
 resource "cloudflare_record" "mimir_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
   name    = "mimir"
-  value   = "2a01:4f8:c013:886a::1"
+  value   = local.vps_ipv6
 }
 
 resource "cloudflare_record" "traefik_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
   name    = "traefik"
-  value   = "88.99.13.74"
+  value   = local.vps_ipv4
 }
 
 resource "cloudflare_record" "traefik_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
   name    = "traefik"
-  value   = "2a01:4f8:c013:886a::1"
+  value   = local.vps_ipv6
 }
 
 resource "cloudflare_record" "minio_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
   name    = "minio"
-  value   = "88.99.13.74"
+  value   = local.vps_ipv4
 }
 
 resource "cloudflare_record" "minio_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
   name    = "minio"
-  value   = "2a01:4f8:c013:886a::1"
+  value   = local.vps_ipv6
 }
 
 resource "cloudflare_record" "minioconsole_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
   name    = "minioconsole"
-  value   = "88.99.13.74"
+  value   = local.vps_ipv4
 }
 
 resource "cloudflare_record" "minioconsole_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
   name    = "minioconsole"
-  value   = "2a01:4f8:c013:886a::1"
+  value   = local.vps_ipv6
 }
 
 resource "cloudflare_record" "static_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"
   name    = "static"
-  value   = "88.99.13.74"
+  value   = local.vps_ipv4
 }
 
 resource "cloudflare_record" "static_kozak_in_ip_v6" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "AAAA"
   name    = "static"
-  value   = "2a01:4f8:c013:886a::1"
+  value   = local.vps_ipv6
 }
 
 resource "cloudflare_record" "kozak_in_mx_1" {

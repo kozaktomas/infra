@@ -47,6 +47,34 @@ resource "cloudflare_record" "traefik_kozak_in_ip_v6" {
   value   = "2a01:4f8:c013:886a::1"
 }
 
+resource "cloudflare_record" "minio_kozak_in_ip_v4" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "A"
+  name    = "minio"
+  value   = "88.99.13.74"
+}
+
+resource "cloudflare_record" "minio_kozak_in_ip_v6" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "AAAA"
+  name    = "minio"
+  value   = "2a01:4f8:c013:886a::1"
+}
+
+resource "cloudflare_record" "minioconsole_kozak_in_ip_v4" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "A"
+  name    = "minioconsole"
+  value   = "88.99.13.74"
+}
+
+resource "cloudflare_record" "minioconsole_kozak_in_ip_v6" {
+  zone_id = cloudflare_zone.kozak_in.id
+  type    = "AAAA"
+  name    = "minioconsole"
+  value   = "2a01:4f8:c013:886a::1"
+}
+
 resource "cloudflare_record" "static_kozak_in_ip_v4" {
   zone_id = cloudflare_zone.kozak_in.id
   type    = "A"

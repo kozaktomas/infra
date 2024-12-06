@@ -27,6 +27,21 @@ variable "GOOGLE_PROJECT_ID" {
   sensitive   = true
 }
 
+variable "MINIO_HOST" {
+  type        = string
+  description = "Personal Minio server host"
+}
+
+variable "MINIO_USER" {
+  type        = string
+  description = "Personal Minio server username"
+}
+
+variable "MINIO_PASSWORD" {
+  type        = string
+  description = "Personal Minio server password"
+}
+
 terraform {
   backend "http" {
     address        = "https://gitlab.com/api/v4/projects/30017932/terraform/state/infra"
@@ -41,6 +56,9 @@ terraform {
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
+    }
+    minio = {
+      source = "aminueza/minio"
     }
   }
 }
@@ -63,4 +81,11 @@ resource "google_container_registry" "registry" {
 
 provider "aws" {
   region = "eu-west-2"
+}
+
+provider "minio" {
+  minio_server   = var.MINIO_HOST
+  minio_user     = var.MINIO_USER
+  minio_password = var.MINIO_PASSWORD
+  minio_ssl      = true
 }

@@ -151,25 +151,47 @@ output "minio_mimir_ruler_url" {
   value = minio_s3_bucket.mimir_ruler.bucket_domain_name
 }
 
-resource "minio_iam_user" "pub" {
-  name          = "pub"
+resource "minio_iam_user" "mimir" {
+  name          = "mimir"
   force_destroy = true
 }
 
-resource "minio_iam_service_account" "pub_sa" {
-  target_user = minio_iam_user.pub.name
+resource "minio_iam_service_account" "mimir_sa" {
+  target_user = minio_iam_user.mimir.name
 }
 
 output "minio_user" {
-  value = minio_iam_service_account.pub_sa.access_key
+  value = minio_iam_service_account.mimir_sa.access_key
 }
 
 output "minio_password" {
-  value     = minio_iam_service_account.pub_sa.secret_key
+  value     = minio_iam_service_account.mimir_sa.secret_key
   sensitive = true
 }
 
-resource "minio_iam_user_policy_attachment" "pub_sa_rw" {
-  user_name   = minio_iam_service_account.pub_sa.target_user
-  policy_name = "readwrite"
+
+data "minio_iam_policy_document" "mimir" {
+  statement {
+    actions = [
+      "s3:*",
+    ]
+    resources = [
+      minio_s3_bucket.mimir_blocks.arn,
+      "${minio_s3_bucket.mimir_blocks.arn}/*",
+      minio_s3_bucket.mimir_ruler.arn,
+      "${minio_s3_bucket.mimir_ruler.arn}/*",
+      minio_s3_bucket.mimir_alertmanager.arn,
+      "${minio_s3_bucket.mimir_alertmanager.arn}/*",
+    ]
+  }
+}
+
+resource "minio_iam_policy" "mimir" {
+  name   = "mimir-policy"
+  policy = data.minio_iam_policy_document.mimir.json
+}
+
+resource "minio_iam_user_policy_attachment" "mimir_sa_rw" {
+  user_name   = minio_iam_service_account.mimir_sa.target_user
+  policy_name = minio_iam_policy.mimir.name
 }
